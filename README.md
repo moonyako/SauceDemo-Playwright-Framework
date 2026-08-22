@@ -1,35 +1,93 @@
-## Why this project?
+# SauceDemo Playwright Automation Framework
 
-Instead of building a generic test script for a random site, I chose **SauceDemo** as a standardized demo application so the project could focus on **automation framework design** rather than business-domain complexity. This allowed me to demonstrate **framework architecture**, **Page Object Model refactoring**, and reusable **custom Playwright fixtures**.
+ Playwright + TypeScript automation portfolio covering **UI end-to-end testing** and **REST API testing**.
+
+- **UI Testing:** SauceDemo
+- **API Testing:** DummyJSON
+
+> SauceDemo and DummyJSON are independent test targets. SauceDemo is used to demonstrate UI automation framework design, while DummyJSON is used to demonstrate REST API testing with Playwright.
+
+## Why This Project?
+
+I chose **SauceDemo** as a standardized demo application so the UI automation work could focus on **framework design**, **Page Object Model (POM)**, reusable **custom Playwright fixtures**, authentication handling, and end-to-end test scenarios rather than business-domain complexity.
+
+This project includes **REST API automation using DummyJSON** to demonstrate API request handling, CRUD operations, HTTP status validation, and JSON response assertions **with Playwright**.
 
 ## 🛠️ Tech Stack & Key Features
 
 - **Language & Runtime:** TypeScript, Node.js
-- **Testing Framework:** Playwright (E2E Test Runner)
-- **Architecture Pattern:** Page Object Model (POM) for maximum maintainability and reusability.
-- **Custom Fixtures:** Isolated test contexts with reusable setup and teardown logic to help reduce duplicated setup code and improve test reliability.
-- **Reporter & CI Ready:** Comprehensive HTML test reporting.
+- **Testing Framework:** Playwright
+- **UI Automation:** End-to-end testing with SauceDemo
+- **API Automation:** REST API testing with DummyJSON
+- **Architecture:** Page Object Model (POM) to improve maintainability and reusability
+- **Custom Fixtures:** Reusable setup and page-object initialization
+- **Authentication:** Playwright storage state for reusable authenticated sessions
+- **Cross-Browser Testing:** Chromium, Firefox, and WebKit
+- **Reporting:** Playwright HTML reports
+
+## 🌐 API Testing
+
+The API test suite uses **DummyJSON** as an independent public REST API for demonstrating Playwright API automation.
+
+Current coverage includes:
+
+| Method | Scenario | Validation |
+|---|---|---|
+| GET | Retrieve products | Status code, product properties, data values |
+| POST | Create a product | Status code and response data |
+| PUT | Update a product | Status code and updated response data |
+| DELETE | Delete a product | Status code, deletion status, deletion timestamp |
+
+The API tests demonstrate:
+
+- Playwright `request` fixture
+- GET, POST, PUT, and DELETE operations
+- Request payloads for POST and PUT
+- HTTP status code validation
+- JSON response parsing
+- Response body assertions
 
 ## 🏗️ Architecture & Project Structure
 
-The project is organized to separate test logic from page interactions, making the framework easier to maintain and extend:
+The project separates UI test logic, page interactions, reusable fixtures, and API tests to make the framework easier to maintain and extend.
 
-- `pages/`: Page Object classes that define UI elements and page-specific actions (e.g., `LoginPage`, `ProductsPage`).
-- `tests/`: Test specifications with clear, declarative assertions.
-- `fixtures/`: Custom Playwright fixtures to streamline authentication and test setup.
-- `playwright.config.ts`: Provides centralized configuration for multi-browser execution, timeouts, and reporting.
+```text
+.
+├── pages/                  # Page Object classes
+├── fixtures/               # Custom Playwright fixtures
+├── tests/
+│   ├── api/                # DummyJSON API tests
+│   │   ├── products-get.spec.ts
+│   │   ├── products-post.spec.ts
+│   │   ├── products-put.spec.ts
+│   │   └── products-delete.spec.ts
+│   └── ...                 # SauceDemo UI tests
+└── playwright.config.ts    # Playwright configuration
+```
 
 ## 🚀 Quick Start
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/moonyako/SauceDemo-Playwright-Framework.git
-   ```
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-3. **Run tests:**
-   ```bash
-   npx playwright test
-   ```
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/moonyako/SauceDemo-Playwright-Framework.git
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run all tests
+
+```bash
+npx playwright test
+```
+
+### 4. Run API tests only
+
+```bash
+npx playwright test tests/api
+```
+
